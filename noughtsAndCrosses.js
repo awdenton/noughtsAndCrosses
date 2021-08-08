@@ -59,8 +59,8 @@ function toggle(n) {
 //checks the x/y axes to see if a player has won
 function xyEqual(n) {
     // check to see if all items in row/col equal eachother, and make sure the center field is populated
-    let xResult = (board[n][0] === board[n][1]) && (board[n][1] === board[n][2]) && (!!board[n][1]);
-    let yResult = (board[0][n] === board[1][n]) && (board[1][n] === board[2][n]) && (!!board[1][n]);
+    let xResult = (board[n][0] === board[n][1]) && (board[n][1] === board[n][2]) && (board[n][1]);
+    let yResult = (board[0][n] === board[1][n]) && (board[1][n] === board[2][n]) && (board[1][n]);
     // if either is true, will return true
     return xResult || yResult;
 }
@@ -70,7 +70,7 @@ function dagEqual() {
     // not a great way to iterate over this, so i just manually check the two diagonals for equality
     let result = ((board[0][0] === board[1][1]) && (board[1][1] === board[2][2])) || ((board[2][0] === board[1][1]) && (board[1][1] === board[0][2]));
     // if everything equals each other and the center sqaure is occupied, you win baby!
-    return result && (!!board[1][1]);
+    return result && board[1][1];
 }
 
 // checks the win conditions
