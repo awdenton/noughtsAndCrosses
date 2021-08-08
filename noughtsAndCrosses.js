@@ -4,7 +4,7 @@ let board = [[``,``,``],[``,``,``],[``,``,``]]
 let activeGame = true;
 // A counter keeping track of turn #, increments after a player picks a square
 let turnNumber = 0;
-// Keep tracking of over all score
+// Keep tracking of over-all score
 let xScore = 0;
 let oScore = 0;
 
@@ -58,17 +58,9 @@ function toggle(n) {
 
 //checks the x/y axes to see if a player has won
 function xyEqual(n) {
-    // initially check to see if all items in row/col equal eachother
-    let xResult = (board[n][0] === board[n][1]) && (board[n][1] === board[n][2]);
-    let yResult = (board[0][n] === board[1][n]) && (board[1][n] === board[2][n]);
-    // the big trick here is making sure the fields are populated. a row/col that is empty is technically
-    // all equal to itself, so the !!board[a][b] flips it to false if the square has not been marked yet
-    for(let i = 0; i < 3; i++) {
-        // check horizontal
-        xResult = xResult && (!!board[n][i]);
-        // check vertical
-        yResult = yResult && (!!board[i][n]);
-    }
+    // check to see if all items in row/col equal eachother, and make sure the center field is populated
+    let xResult = (board[n][0] === board[n][1]) && (board[n][1] === board[n][2]) && (!!board[n][1]);
+    let yResult = (board[0][n] === board[1][n]) && (board[1][n] === board[2][n]) && (!!board[1][n]);
     // if either is true, will return true
     return xResult || yResult;
 }
