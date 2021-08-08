@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Noughts and Crosses</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@700&display=swap" rel="stylesheet"> 
+        <style>
+            table {
+                border: 7px groove #967e06;
+                border-collapse: collapse;
+                margin: 15px 30px;
+            }
+
+            td {
+                width: 100px;
+                height: 100px;
+                text-align: center;
+                font-family: sans-serif;
+                font-size: 3em;
+                font-weight: bold;
+            }
+
+            .left {
+                border-right: 3px solid black;
+            }
+
+            .right {
+                border-left: 3px solid black;
+            }
+
+            .top {
+                border-bottom: 3px solid black;
+            }
+
+            .bottom {
+                border-top: 3px solid black;
+            }
+
+            .O {
+                color: white;
+            }
+
+            .X {
+                color: black;
+            }
+
+            .game-info {
+                text-align: center;
+                color: blue;
+            }
+
+            .game-info h1, h2 {
+                margin: 5px 0px;
+                padding: 0;
+            }
+
+            .score-counter {
+                position: relative;
+            }
+
+            #game-board {
+                background-color: #b39609;
+                display: inline-block;
+                border: 8px double black;
+            }
+
+            #title {
+                font-family: 'Tangerine', cursive;
+                font-size: 2.5em;
+            }
+
+            #score-board {
+                position: relative;
+                margin-bottom: 0;
+            }
+
+            #score-board h2{
+                display: inline;
+            }
+
+            #reset-btn {
+                border-radius: 15%;
+                background-color: #bbb;
+                border: 2px solid black;
+            }
+
+            #reset-btn:hover {
+                background-color: #fff;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="game-board">
+            <div class="game-info">
+                <h1 id="title">Noughts and Crosses</h1>
+                <h2><span id="current" class="X">X</span> plays next</h2>
+            </div>
+            <table>
+                <tr>
+                    <td id="sqr0" class="top left" onclick="toggle(0)"></td>
+                    <td id="sqr1" class="top" onclick="toggle(1)"></td>
+                    <td id="sqr2" class="top right" onclick="toggle(2)"></td>
+                </tr>
+                <tr>
+                    <td id="sqr3" class="left" onclick="toggle(3)"></td>
+                    <td id="sqr4" onclick="toggle(4)"></td>
+                    <td id="sqr5" class="right" onclick="toggle(5)"></td>
+                </tr>
+                <tr>
+                    <td id="sqr6" class="bottom left" onclick="toggle(6)"></td clas>
+                    <td id="sqr7" class="bottom" onclick="toggle(7)"></td>
+                    <td id="sqr8" class="bottom right" onclick="toggle(8)"></td>
+                </tr>
+            </table>
+            <div class="game-info" style="height: 65px;">
+                <h2 id="alert-banner"></h2>
+                <button id="reset-btn" style="display: none" onclick="resetIt()">Reset</button>
+            </div>
+            <div id="score-board">
+                <h2 class="X" style="float: left; padding-left: 10px">X:<span id="xScore">0</span></h2>
+                <h2 class="O" style="float: right; padding-right: 10px"><span id="oScore">0</span>:O</h2>
+            </div>
+        </div>
+
+        <script src="noughtsAndCrosses.js"></script>
+    </body>
+</html>
