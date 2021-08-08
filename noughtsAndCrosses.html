@@ -9,7 +9,7 @@
             table {
                 border: 7px groove #967e06;
                 border-collapse: collapse;
-                margin: 15px 30px;
+                margin: 15px auto;
             }
 
             td {
@@ -55,14 +55,12 @@
                 padding: 0;
             }
 
-            .score-counter {
-                position: relative;
-            }
-
             #game-board {
                 background-color: #b39609;
-                display: inline-block;
+                display: block;
                 border: 8px double black;
+                width: 360px;
+                margin: auto;
             }
 
             #title {
@@ -71,8 +69,7 @@
             }
 
             #score-board {
-                position: relative;
-                margin-bottom: 0;
+                
             }
 
             #score-board h2{
@@ -114,13 +111,13 @@
                     <td id="sqr8" class="bottom right" onclick="toggle(8)"></td>
                 </tr>
             </table>
-            <div class="game-info" style="height: 65px;">
-                <h2 id="alert-banner"></h2>
-                <button id="reset-btn" style="display: none" onclick="resetIt()">Reset</button>
-            </div>
             <div id="score-board">
                 <h2 class="X" style="float: left; padding-left: 10px">X:<span id="xScore">0</span></h2>
                 <h2 class="O" style="float: right; padding-right: 10px"><span id="oScore">0</span>:O</h2>
+            </div>
+            <div class="game-info" style="height: 65px;">
+                <h2 id="alert-banner"></h2>
+                <button id="reset-btn" style="display: none" onclick="resetIt()">Reset</button>
             </div>
         </div>
 
