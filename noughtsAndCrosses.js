@@ -21,10 +21,10 @@ function toggle(n) {
         
         // make sure the space isnt already occupied
         if(!board[r][c]) {
-            // mark the space with the current players symbol
-            board[r][c] = currTurn.innerHTML;
-
             // update array representing current state of game board
+            board[r][c] = currTurn.innerHTML;
+            
+            // mark the space with the current players symbol
             document.getElementById(`sqr${n}`).innerHTML = currTurn.innerHTML;
             // adds a class to the table element to give it some styling
             document.getElementById(`sqr${n}`).classList.add(currTurn.innerHTML);
@@ -43,11 +43,11 @@ function toggle(n) {
                 }
                 //increment turn number
                 turnNumber++;
-            }
-            // check to see there are any valid moves lefts
-            if(turnNumber === 9) {
-                // if not, end game
-                draws();
+                // check to see there are any valid moves lefts
+                if(turnNumber === 9) {
+                    // if not, end game
+                    draws();
+                }
             }
         // if space was taken tell player to choose another square
         } else {
@@ -56,38 +56,43 @@ function toggle(n) {
     }
 }
 
-// function to see if every element on a row is equl
-function rowEqual(arr) {
-    let result = false;
-    for (let i = 0; i < board.length; i++) {
-        result = (arr[0] === arr[1]) && (arr[1] === arr[2]) && (!!arr[i]);
+//checks the x/y axes to see if a player has won
+function xyEqual(n) {
+    // initially check to see if all items in row/col equal eachother
+    let xResult = (board[n][0] === board[n][1]) && (board[n][1] === board[n][2]);
+    let yResult = (board[0][n] === board[1][n]) && (board[1][n] === board[2][n]);
+    // the big trick here is making sure the fields are populated. a row/col that is empty is technically
+    // all equal to itself, so the !!board[a][b] flips it to false if the square has not been marked yet
+    for(let i = 0; i < 3; i++) {
+        // check horizontal
+        xResult = xResult && (!!board[n][i]);
+        // check vertical
+        yResult = yResult && (!!board[i][n]);
     }
-    return result;
-}
-
-// function to check if every element in a column is equal
-function colEqual(c) {
-    let result = false;
-    for(let r = 0; r < board[c].length; r++) {
-        result = (board[0][c] === board[1][c]) && (board[1][c] === board[2][c]) && (!!board[r][c]);
-    }
-    return result;
+    // if either is true, will return true
+    return xResult || yResult;
 }
 
 // function to check the diagonals for equality
 function dagEqual() {
+    // not a great way to iterate over this, so i just manually check the two diagonals for equality
     let result = ((board[0][0] === board[1][1]) && (board[1][1] === board[2][2])) || ((board[2][0] === board[1][1]) && (board[1][1] === board[0][2]));
+    // if everything equals each other and the center sqaure is occupied, you win baby!
     return result && (!!board[1][1]);
 }
 
 // checks the win conditions
 function checkWin() {
-    let resultAcross = false;
-    //loop checks the three rows and three columns, the diagonals just get manually checked everytime
+    // check the diagonals first
+    if(dagEqual()){
+        wins();
+        return true;
+    }
+    //loop then checks the rows and cols for potential wins
     for (let i = 0; i < 3; i++) {
-        if(rowEqual(board[i]) || colEqual(i) || dagEqual()) {
-            wins();
-            return true;            
+        if(xyEqual(i)) {
+             wins();
+             return true;            
         }
     }
     return false;

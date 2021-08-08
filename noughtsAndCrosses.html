@@ -68,10 +68,6 @@
                 font-size: 2.5em;
             }
 
-            #score-board {
-                
-            }
-
             #score-board h2{
                 display: inline;
             }
@@ -91,7 +87,7 @@
     <body>
         <div id="game-board">
             <div class="game-info">
-                <h1 id="title">Noughts and Crosses</h1>
+                <h1 id="title"><span class="O">Noughts</span> and <span class="X">Crosses</span></h1>
                 <h2><span id="current" class="X">X</span> plays next</h2>
             </div>
             <table>
@@ -112,8 +108,8 @@
                 </tr>
             </table>
             <div id="score-board">
-                <h2 class="X" style="float: left; padding-left: 10px">X:<span id="xScore">0</span></h2>
-                <h2 class="O" style="float: right; padding-right: 10px"><span id="oScore">0</span>:O</h2>
+                <h2 class="O" style="float: left; padding-left: 10px">O:<span id="oScore">0</span></h2>
+                <h2 class="X" style="float: right; padding-right: 10px"><span id="xScore">0</span>:X</h2>
             </div>
             <div class="game-info" style="height: 65px;">
                 <h2 id="alert-banner"></h2>
